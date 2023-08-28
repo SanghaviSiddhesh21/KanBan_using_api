@@ -1,0 +1,16 @@
+cd "/mnt/d/TY/Madras/Term 6/MAD-II/Kanban Renewed/Draft 03" 
+source env/bin/activate
+celery -A app.celery worker -l info ###To run celery workers
+celery -A app.celery beat --max-interval 1 -l info
+
+
+sudo apt-get install software-properties-common
+sudo apt-add-repository universe
+sudo apt-get update
+sudo apt-get install python3-pip
+sudo apt install python-pip
+sudo apt install python3-virtualenv
+virtualenv env
+source env/bin/activate
+pip install flask
+pip install celery[redis]

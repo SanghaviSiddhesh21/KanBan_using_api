@@ -1,0 +1,546 @@
+openapi: 3.0.0
+info:
+  title: Lista
+  version: 1.0.0
+  description: The purpose of this application is to help it's user to better keep track of their tasks and increase their productivity
+              <h2>Error information</h2>
+                  <table>
+                    <thead>
+                      <th>Error Code &nbsp;</th>
+                      <th>Message</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>E001</td>
+                        <td>Input not of proper format</td>
+                      </tr>
+                      <tr>
+                        <td>E002</td>
+                        <td>User does not exists</td>
+                      </tr>
+                          
+                    </tbody>
+                  </table>
+servers:
+  - url: http://127.0.0.1:8080/
+paths:      
+  /api/getallactivelists/{userid}:
+    description: >-
+      To get all the active list and all of it's cards along with other information
+    get:
+      description: Operation to check if a user exists
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/getallcompletelists/{userid}:
+    description: >-
+      To get all the completed list and all of it's cards along with other information
+    get:
+      description: Operation to check if a user exists
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/getallactivecardsfromlists/{userid}:
+    description: >-
+      To get all the active list and all of it's active cards along with other information
+    get:
+      description: Operation to check if a user exists
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/createlist:
+    description: End point to create a list for the user.
+    post:
+      description: Operation to create a list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: user object
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: '12'
+                list_name:
+                  type: string
+                  example: Trial name
+                list_description:
+                  type: string
+                  example: list_description                                          
+      responses:
+        '201':
+          description: Successfully Created.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Resource error.
+        '500':
+          description: Internal Server Error.   
+  /api/createcardtablist/{userid}:
+    description: >-
+      To get all list name
+    get:
+      description: Operation to generate all list name
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/createcard:
+    description: End point to create a card for the user.
+    post:
+      description: Operation to create card
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: user object
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: '12'
+                card_name:
+                  type: string
+                  example: Trial name
+                card_description:
+                  type: string
+                  example: list_description
+                due:
+                  type: string
+                  example: "12-12-2022"
+                status:
+                  type: string
+                  example: "yes/no"
+                lists_to_add:
+                  type: string
+                  example: "[12,13,14]"
+      responses:
+        '201':
+          description: Successfully Created.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Resource error.
+        '500':
+          description: Internal Server Error.
+  /api/getactivelist/{userid}:
+    description: >-
+      To get all list name
+    get:
+      description: Operation to generate all list name
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/getcompletedlist/{userid}:
+    description: >-
+      To get all list name
+    get:
+      description: Operation to generate all list name
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/geteditcarddetails/{cardid}:
+    description: >-
+      To get all list name
+    get:
+      description: Operation to generate all list name
+      parameters:
+        - in: path
+          name: cardid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/posteditedcarddetails:
+    description: End point to create a card for the user.
+    post:
+      description: Operation to create card
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: user object
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  example: '12'
+                card_id:
+                  type: string
+                  example: '12'
+                card_name:
+                  type: string
+                  example: Trial name
+                card_description:
+                  type: string
+                  example: list_description
+                due:
+                  type: string
+                  example: "12-12-2022"
+                status:
+                  type: string
+                  example: "yes/no"
+                lists_to_add:
+                  type: string
+                  example: "[12,13,14]"
+      responses:
+        '201':
+          description: Successfully Created.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Resource error.
+        '500':
+          description: Internal Server Error.
+  /api/deletecard:
+    description: End point to create a card for the user.
+    post:
+      description: Operation to create card
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: user object
+              type: object
+              properties:
+                card_id:
+                  type: string
+                  example: '12'
+      responses:
+        '201':
+          description: Successfully Created.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Resource error.
+        '500':
+          description: Internal Server Error.
+  /api/dashboarddata/{userid}:
+    description: >-
+      To get all the completed list and all of it's cards along with other information
+    get:
+      description: Operation to check if a user exists
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/editlistdata/{listid}:
+    description: >-
+      To get all the completed list and all of it's cards along with other information
+    get:
+      description: Operation to check if a user exists
+      parameters:
+        - in: path
+          name: listid
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
+  /api/edittedlist:
+    description: End point to create a list for the user.
+    post:
+      description: Operation to create a list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: user object
+              type: object
+              properties:
+                list_id:
+                  type: string
+                  example: '12'
+                user_id:
+                  type: string
+                  example: '12'
+                list_name:
+                  type: string
+                  example: Trial name
+                list_description:
+                  type: string
+                  example: list_description                                          
+      responses:
+        '201':
+          description: Successfully Created.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Resource error.
+        '500':
+          description: Internal Server Error. 
+  /api/deletelist:
+    description: End point to create a card for the user.
+    post:
+      description: Operation to create card
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: user object
+              type: object
+              properties:
+                list_id:
+                  type: string
+                  example: '12'
+      responses:
+        '201':
+          description: Successfully Created.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Resource error.
+        '500':
+          description: Internal Server Error.
+  /api/userlistreport/{user_id}:
+    description: >-
+      To get all the completed list and all of it's cards along with other information
+    get:
+      description: Operation to check if a user exists
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+            example: '12'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  Existense:
+                    type: string
+                    example: true/false                 
+        '404':
+          description: Resource error
+        '500':
+          description: Internal Server Error
